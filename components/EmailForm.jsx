@@ -39,7 +39,9 @@ export default function EmailForm() {
     setStatus("📤 Sending emails...");
 
     try {
-      await axios.post("http://localhost:5000/api/mail/send", {
+      const API = import.meta.env.VITE_API_URL; // <- Uses Vercel Env Variable
+
+      await axios.post(`${API}/api/mail/send`, {
         subject,
         body,
         recipients: emails,
